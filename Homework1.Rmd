@@ -1,0 +1,118 @@
+---
+title: "Homework 1"
+author: "Ryan Staley"
+date: "9/11/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(ggplot2)
+library(dplyr)
+```
+
+```{r}
+diamonds2<- diamonds
+```
+
+
+```{r}
+head(diamonds2)
+```
+
+
+### Q1
+```{r}
+ggplot(data = diamonds2,
+       mapping =aes(x=carat, y= price, color = as.character(clarity)))+
+  geom_point(alpha = 1/3)+
+  theme_bw()+ 
+  labs(x= "Diamond Carats",
+        y= "Diamond Price",
+       title = "Scatterplot of Diamond prices")
+```
+
+### Q2
+
+```{r}
+ggplot(data = diamonds2,
+       mapping =aes(x=carat, y= price, color = as.character(clarity)))+
+  geom_point(alpha = 1/3)+
+  facet_grid(.~clarity)+
+  facet_wrap(~ clarity, ncol = 3)+
+  theme_bw()+ 
+  labs(x= "Diamond Carats",
+        y= "Diamond Price",
+       title = "Scatterplot of Diamond Prices")+
+  theme(legend.position = "none")
+```
+ 
+### Q3
+
+```{r}
+ggplot(data = diamonds2,
+       mapping =aes(x=table, y= price))+
+geom_smooth(method=lm,color ="red",linetype ="dashed")+
+   theme_bw()+ 
+  labs(x= "Table",
+        y= "Price")
+```
+
+
+
+```{r}
+ggplot(data = diamonds2,
+       mapping =aes(x=depth, y= price))+
+geom_smooth(method=lm,color ="white",linetype ="dotdash")+
+  theme_bw()+ 
+  labs(x= "Depth",
+        y= "Price")
+```
+
+
+### Q4
+
+
+```{r}
+ggplot(data = diamonds2,
+       mapping =aes(x=price))+
+geom_histogram(binwidth = 1)+
+  theme_bw()
+```
+
+
+
+```{r}
+ggplot(data = diamonds2,
+       mapping =aes(x=price))+
+geom_histogram(bins = 30)+
+  theme_bw()
+```
+
+```{r}
+ggplot(data = diamonds2,
+       mapping =aes(x=clarity, fill = clarity))+
+geom_bar()+
+  theme_bw()+
+    theme(legend.position = "none")
+```
+
+
+```{r}
+ggplot(diamonds2, aes(cut, depth)) +
+  geom_violin(color = "blue")+
+  geom_jitter(alpha=0.05,color = "red")+
+  theme_bw()
+
+```
+
+
+```{r}
+ggplot(data = diamonds2,
+       mapping =aes(x, y= price))+
+geom_smooth(method=lm,color ="green")+
+  geom_smooth(se=F)+
+   theme_bw()
+  
+```
+
